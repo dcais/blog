@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="bash,args,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -86,18 +86,17 @@
 
 
 
-<meta name="description" content="变量说明: 123456789101112131415161718$$Shell本身的PID（ProcessID）$!Shell最后运行的后台Process的PID$?最后运行的命令的结束代码（返回值）$-使用Set命令设定的Flag一览$*所有参数列表。如&amp;quot;$*&amp;quot;用「&amp;quot;」括起来的情况、以&amp;quot;$1 $2 … $n&amp;quot;的形式输出所有参数。$@所有参数列表">
-<meta name="keywords" content="bash,args">
+<meta name="description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux中shell变量$#,$@,$0,$1,$2的含义解释">
-<meta property="og:url" content="https://davidcai19840412.github.io/blog/2018/10/23/bash-args/index.html">
+<meta property="og:title" content="利用bash制作守护进程的脚本">
+<meta property="og:url" content="https://davidcai19840412.github.io/blog/2018/10/23/bash-process-watcher/index.html">
 <meta property="og:site_name" content="DCai&#39;s Blog">
-<meta property="og:description" content="变量说明: 123456789101112131415161718$$Shell本身的PID（ProcessID）$!Shell最后运行的后台Process的PID$?最后运行的命令的结束代码（返回值）$-使用Set命令设定的Flag一览$*所有参数列表。如&amp;quot;$*&amp;quot;用「&amp;quot;」括起来的情况、以&amp;quot;$1 $2 … $n&amp;quot;的形式输出所有参数。$@所有参数列表">
+<meta property="og:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-23T03:13:31.324Z">
+<meta property="og:updated_time" content="2018-10-23T05:25:52.570Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux中shell变量$#,$@,$0,$1,$2的含义解释">
-<meta name="twitter:description" content="变量说明: 123456789101112131415161718$$Shell本身的PID（ProcessID）$!Shell最后运行的后台Process的PID$?最后运行的命令的结束代码（返回值）$-使用Set命令设定的Flag一览$*所有参数列表。如&amp;quot;$*&amp;quot;用「&amp;quot;」括起来的情况、以&amp;quot;$1 $2 … $n&amp;quot;的形式输出所有参数。$@所有参数列表">
+<meta name="twitter:title" content="利用bash制作守护进程的脚本">
+<meta name="twitter:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
 
 
 
@@ -127,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://davidcai19840412.github.io/blog/2018/10/23/bash-args/">
+  <link rel="canonical" href="https://davidcai19840412.github.io/blog/2018/10/23/bash-process-watcher/">
 
 
 
 
 
-  <title>linux中shell变量$#,$@,$0,$1,$2的含义解释 | DCai's Blog</title>
+  <title>利用bash制作守护进程的脚本 | DCai's Blog</title>
   
 
 
@@ -260,7 +259,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://davidcai19840412.github.io/blog/blog/2018/10/23/bash-args/">
+    <link itemprop="mainEntityOfPage" href="https://davidcai19840412.github.io/blog/blog/2018/10/23/bash-process-watcher/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="d cai">
@@ -277,7 +276,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux中shell变量$#,$@,$0,$1,$2的含义解释</h1>
+          <h1 class="post-title" itemprop="name headline">利用bash制作守护进程的脚本</h1>
         
 
         <div class="post-meta">
@@ -289,7 +288,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T11:11:20+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-23T11:33:40+08:00">
                 2018-10-23
               </time>
             
@@ -299,28 +298,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/blog/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -349,8 +326,20 @@
       
 
       
-        <p>变量说明:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">Shell本身的PID（ProcessID）</span><br><span class="line">$!</span><br><span class="line">Shell最后运行的后台Process的PID</span><br><span class="line">$?</span><br><span class="line">最后运行的命令的结束代码（返回值）</span><br><span class="line">$-</span><br><span class="line">使用Set命令设定的Flag一览</span><br><span class="line">$*</span><br><span class="line">所有参数列表。如&quot;$*&quot;用「&quot;」括起来的情况、以&quot;$1 $2 … $n&quot;的形式输出所有参数。</span><br><span class="line">$@</span><br><span class="line">所有参数列表。如&quot;$@&quot;用「&quot;」括起来的情况、以&quot;$1&quot; &quot;$2&quot; … &quot;$n&quot; 的形式输出所有参数。</span><br><span class="line">$#</span><br><span class="line">添加到Shell的参数个数</span><br><span class="line">$0</span><br><span class="line">Shell本身的文件名</span><br><span class="line">$1～$n</span><br><span class="line">添加到Shell的各参数值。$1是第1参数、$2是第2参数…。</span><br></pre></td></tr></table></figure>
+        <h1 id="运用场景"><a href="#运用场景" class="headerlink" title="运用场景"></a>运用场景</h1><p>在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。</p>
+<h2 id="1-记录进程的PID"><a href="#1-记录进程的PID" class="headerlink" title="1. 记录进程的PID"></a>1. 记录进程的PID</h2><p>为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID</p>
+<p>我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID</p>
+<p>Example:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; ./pid.file &amp;</span><br></pre></td></tr></table></figure>
+<p>这样我们便得到了 myapp.jar的进程PID,并写入了 ./pid.file文件中</p>
+<h2 id="2-监测进程是否在运行"><a href="#2-监测进程是否在运行" class="headerlink" title="2. 监测进程是否在运行"></a>2. 监测进程是否在运行</h2><p>利用 kill -0 检测进程是否存在<br>kill -0 \$pid中的-0表示不发送任何信号给PID对应的进程，但是仍会对变量值PID对应的进程是否存在进行检查，如果\$pid对应的进程存在，则返回0，不存在返回1。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PID=$(cat ./pid.file) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">kill</span> -0 <span class="variable">$&#123;SAUNA_PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">IS_RUNNING=$?</span><br></pre></td></tr></table></figure>
+<h2 id="3-完整脚本"><a href="#3-完整脚本" class="headerlink" title="3. 完整脚本"></a>3. 完整脚本</h2><p>start.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line">WATCH_PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/watch.pid</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程PID输出到文件</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span> 2&gt;/dev/null &amp;</span><br><span class="line">sleep 5</span><br><span class="line"></span><br><span class="line">sh watch.sh &gt; watch.log 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span></span><br></pre></td></tr></table></figure>
+<p>watch.sh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="string">"<span class="variable">$PID_FILE</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="comment">#如果PID文件存在</span></span><br><span class="line">  PID=$(cat <span class="variable">$&#123;SAUNA_PID_FILE&#125;</span>) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  PID=<span class="string">"0000"</span></span><br><span class="line">  IS_RUNNING=1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#检测循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 5 秒检测一次</span></span><br><span class="line">  sleep 5</span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$&#123;IS_RUNNING&#125;</span> -ne 0 ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"service is dead. restarting..."</span>;</span><br><span class="line">    sh start.sh</span><br><span class="line">    <span class="built_in">exit</span> 0;</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong> stop脚本里要kill掉watch.sh ，不然会重复启动。</p>
+
       
     </div>
     
@@ -389,14 +378,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/blog/tags/bash/" rel="tag"># bash</a>
-          
-            <a href="/blog/tags/args/" rel="tag"># args</a>
-          
-        </div>
-      
 
       
       
@@ -406,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/10/23/linux-mount-harddisk/" rel="next" title="linux硬盘分区格式化以及挂载">
-                <i class="fa fa-chevron-left"></i> linux硬盘分区格式化以及挂载
+              <a href="/blog/2018/10/23/es-server-config/" rel="next" title="ElasticSearch服务器secrity配置">
+                <i class="fa fa-chevron-left"></i> ElasticSearch服务器secrity配置
               </a>
             
           </div>
@@ -415,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/10/23/es-server-config/" rel="prev" title="ElasticSearch服务器secrity配置">
-                ElasticSearch服务器secrity配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -470,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -549,6 +535,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运用场景"><span class="nav-number">1.</span> <span class="nav-text">运用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-记录进程的PID"><span class="nav-number">1.1.</span> <span class="nav-text">1. 记录进程的PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-监测进程是否在运行"><span class="nav-number">1.2.</span> <span class="nav-text">2. 监测进程是否在运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-完整脚本"><span class="nav-number">1.3.</span> <span class="nav-text">3. 完整脚本</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

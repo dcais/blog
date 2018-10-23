@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch服务器配置
+title: ElasticSearch服务器secrity配置
 date: 2018-10-23 11:14:25
 tags: [elasticsearch]
 categories: [运维]
