@@ -112,9 +112,9 @@ menu_icons:
 
 # Schemes
 scheme: Muse
-#scheme: Mist
-#scheme: Pisces
-#scheme: Gemini
+# scheme: Mist
+# scheme: Pisces
+# scheme: Gemini
 
 
 # ---------------------------------------------------------------
@@ -126,8 +126,9 @@ scheme: Muse
 # Key is the link label showing to end users.
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
-#social:
-  #GitHub: https://github.com/yourname || github
+social:
+  GitHub: https://github.com/davidcai19840412|| github
+  知乎: https://www.zhihu.com/people/mo-shen-ren-50  || globe
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
   #Twitter: https://twitter.com/yourname || twitter
@@ -242,10 +243,14 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 # Reward
-#reward_comment: Donate comment here
+# reward_comment: 捐助
 #wechatpay: /images/wechatpay.jpg
-#alipay: /images/alipay.jpg
+alipay: /blog/images/alipay.jpg
 #bitcoin: /images/bitcoin.png
+# reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+# wechatpay: 
+# alipay: 你的支付宝收款码链接
+
 
 # Declare license on posts
 post_copyright:
@@ -277,7 +282,7 @@ custom_logo:
 # Available value:
 #    normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night bright 
 
 
 # ---------------------------------------------------------------
@@ -677,7 +682,7 @@ fancybox: true
 # Progress bar in the top during page loading.
 pace: false
 # Themes list:
-#pace-theme-big-counter
+# pace: pace-theme-big-counter
 #pace-theme-bounce
 #pace-theme-barber-shop
 #pace-theme-center-atom

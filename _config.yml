@@ -4,11 +4,12 @@
 
 # Site
 title: DCai's Blog
-subtitle:
-description:
+subtitle: 代码的世界学无止尽
+description: 代码的世界学无止尽
 author: d cai
-language:
+language: zh-Hans
 timezone:
+avatar: https://avatars0.githubusercontent.com/u/2242130?s=400&u=b82a3bd0b3738d0cc1f87c5c797a1487c6b93b0f&v=4
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
@@ -28,13 +29,13 @@ i18n_dir: :lang
 skip_render:
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :year-:month-:title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
@@ -79,6 +80,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:davidcai19840412/myblog.git
+  # repo: git@github.com:davidcai19840412/myblog.git
   # branch: [branch]
   #message: [message]
