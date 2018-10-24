@@ -1,7 +1,7 @@
 ---
 title: Spring自定义Scope (译)
 date: 2018-10-24 09:16:21
-tags: spring scope java scope 译
+tags: [spring scope java scope 译]
 categories: spring 
 ---
 
@@ -118,7 +118,6 @@ void registerScope(String scopeName, Scope scope);
 
 ```java
 public class TenantBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
- 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory factory) throws BeansException {
         factory.registerScope("tenant", new TenantScope());
@@ -131,7 +130,6 @@ public class TenantBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 ```java
 @Configuration
 public class TenantScopeConfig {
- 
     @Bean
     public static BeanFactoryPostProcessor beanFactoryPostProcessor() {
         return new TenantBeanFactoryPostProcessor();
@@ -157,7 +155,7 @@ public class TenantBean {
     public void sayHello() {
         System.out.println(
           String.format("Hello from %s of type %s",
-          this.name, 
+          this.name,
           this.getClass().getName()));
     }
 }
@@ -182,7 +180,6 @@ public class TenantBeansConfig {
 }
 ```
 
-
 # 5. 测试自定义Scope
 
 让我们写一些单元测试测试一下
@@ -206,7 +203,7 @@ public final void whenRegisterScopeAndBeans_thenContextContainsFooAndBar() {
         assertThat(foos.size(), equalTo(2));
         assertTrue(foos.containsValue(foo));
         assertTrue(foos.containsValue(bar));
- 
+
         BeanDefinition fooDefinition = ctx.getBeanDefinition("foo");
         BeanDefinition barDefinition = ctx.getBeanDefinition("bar");
 
@@ -228,11 +225,9 @@ Hello from bar of type org.baeldung.customscope.TenantBean
 
 # 6. 总结
 
-
 在本教程中我们演示了spring怎样定义，注册和使用自定义scope。你可以通过阅读
 [Spring Framework Reference](https://docs.spring.io/spring/docs/current/spring-framework-reference/#beans-factory-scopes-custom)了解更多细节，你也可以通过[Spring Framework](https://github.com/spring-projects/spring-framework)源码.看一下Spring是如何实现了各种Scope.
 
 你可以[点这里](https://github.com/eugenp/tutorials/tree/master/spring-all)获取本教程代码
 
-
-**[原文链接](https://www.baeldung.com/spring-custom-scope)**: https://www.baeldung.com/spring-custom-scope
+**[原文链接](https://www.baeldung.com/spring-custom-scope)** : [https://www.baeldung.com/spring-custom-scope](https://www.baeldung.com/spring-custom-scope)
