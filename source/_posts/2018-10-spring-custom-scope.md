@@ -1,7 +1,7 @@
 ---
 title: Spring自定义Scope (译)
 date: 2018-10-24 09:16:21
-tags: [spring scope java scope 译]
+tags: [spring,scope,java,scope,译]
 categories: spring 
 ---
 
