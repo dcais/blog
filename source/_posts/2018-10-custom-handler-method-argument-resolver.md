@@ -108,7 +108,7 @@ public class CookieObjectMethodArgumentResolver implements HandlerMethodArgument
 
 最后再SpringMVC的配置中把我们定义的CookieObjectMethodArgumentResolver实例化后加入argumentResolvers列表。
 
-```java
+``java
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
     @Override
