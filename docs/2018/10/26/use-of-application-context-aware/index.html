@@ -384,6 +384,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/10/26/use-of-application-context-aware/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2018/10/26/use-of-application-context-aware/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -831,11 +841,8 @@
 <!-- LOCAL: You can save these files to your site and update links -->
     
         
-        <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-        <!--
-        <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-        -->
-        <script src="https://www.wenjunjiang.win/js/gitment.js"></script>
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
     
 <!-- END LOCAL -->
 
@@ -844,15 +851,17 @@
     
       <script type="text/javascript">
       function renderGitment(){
-        var gitment = new Gitment({
+        var gitment = new Gitmint({
             id: window.location.pathname,
             owner: 'davidcai19840412',
             repo: 'blog',
             
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
             oauth: {
             
             
-                client_secret: '388f84421fd780d9fbe0a8be444c7cb8d62de8e7',
+                proxy_gateway: 'https://cors.wenjunjiang.win/?remoteUrl=https://github.com/login/oauth/access_token',
             
                 client_id: '546bc854655bcf7ea053'
             }});
