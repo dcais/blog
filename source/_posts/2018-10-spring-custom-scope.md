@@ -55,7 +55,7 @@ public Object get(String name, ObjectFactory<?> objectFactory) {
 
 在Scope接口中定义的5个方法中，**只有get方法是必须要实现的**，其他4个方法的实现是可选的，当没有实现却被调用的情况下会抛出UnsupportedOperationException异常。
 
-# 2.3 实现销毁回掉（Destruction Callback）
+# 2.3 实现销毁回调（Destruction Callback）
 
 我们必须实现registerDestructionCallback方法，这个方法提供了当object或scope本身被销毁的时候的回调。
 

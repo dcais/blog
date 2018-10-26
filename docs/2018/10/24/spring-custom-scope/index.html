@@ -123,7 +123,7 @@
 <meta property="og:site_name" content="DCai&#39;s Blog">
 <meta property="og:description" content="1. 概述开箱即用的spring boot提供了”singleton”和”prototype”2个标准的，可以在任何spring application中使用的bean scope，以及”request”,”session”,”globalSession” 3个附加的，只能在web-aware application中使用的bean scope。 标准的bean scope 不能被overridd">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-24T03:15:12.852Z">
+<meta property="og:updated_time" content="2018-10-26T03:27:48.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring自定义Scope (译)">
 <meta name="twitter:description" content="1. 概述开箱即用的spring boot提供了”singleton”和”prototype”2个标准的，可以在任何spring application中使用的bean scope，以及”request”,”session”,”globalSession” 3个附加的，只能在web-aware application中使用的bean scope。 标准的bean scope 不能被overridd">
@@ -350,12 +350,24 @@
                 
               
 
-              <time title="创建时间：2018-10-24 09:16:21 / 修改时间：11:15:12" itemprop="dateCreated datePublished" datetime="2018-10-24T09:16:21+08:00">2018-10-24</time>
+              <time title="创建时间：2018-10-24 09:16:21" itemprop="dateCreated datePublished" datetime="2018-10-24T09:16:21+08:00">2018-10-24</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-26 11:27:48" itemprop="dateModified" datetime="2018-10-26T11:27:48+08:00">2018-10-26</time>
               
             
           </span>
@@ -417,7 +429,7 @@
 <p>在我们的实现中，我们先检查是否能从我们的map中取到Object，如果取到了返回它，如果没取到，我们使用ObjectFactory创建一个新的Object，把它添加到map中并返回。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(String name, ObjectFactory&lt;?&gt; objectFactory)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!scopedObjects.containsKey(name)) &#123;</span><br><span class="line">        scopedObjects.put(name, objectFactory.getObject());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> scopedObjects.get(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在Scope接口中定义的5个方法中，<strong>只有get方法是必须要实现的</strong>，其他4个方法的实现是可选的，当没有实现却被调用的情况下会抛出UnsupportedOperationException异常。</p>
-<h1 id="2-3-实现销毁回掉（Destruction-Callback）"><a href="#2-3-实现销毁回掉（Destruction-Callback）" class="headerlink" title="2.3 实现销毁回掉（Destruction Callback）"></a>2.3 实现销毁回掉（Destruction Callback）</h1><p>我们必须实现registerDestructionCallback方法，这个方法提供了当object或scope本身被销毁的时候的回调。</p>
+<h1 id="2-3-实现销毁回调（Destruction-Callback）"><a href="#2-3-实现销毁回调（Destruction-Callback）" class="headerlink" title="2.3 实现销毁回调（Destruction Callback）"></a>2.3 实现销毁回调（Destruction Callback）</h1><p>我们必须实现registerDestructionCallback方法，这个方法提供了当object或scope本身被销毁的时候的回调。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerDestructionCallback</span><span class="params">(String name, Runnable callback)</span> </span>&#123;</span><br><span class="line">    destructionCallbacks.put(name, callback);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="2-4-从Scope移除Object"><a href="#2-4-从Scope移除Object" class="headerlink" title="2.4 从Scope移除Object"></a>2.4 从Scope移除Object</h1><p>接下来，让我们实习那remove方法。remove方法从scope删除了object，移除了之前注册的销毁时的回调，并且返回被移除的object</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">remove</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    destructionCallbacks.remove(name);</span><br><span class="line">    <span class="keyword">return</span> scopedObjects.remove(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -704,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建一个自定义Scope类"><span class="nav-text">2. 创建一个自定义Scope类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-管理-Scope-Object-Callback"><span class="nav-text">2.1 管理 Scope Object Callback</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-从Scope中获取Object"><span class="nav-text">2.2 从Scope中获取Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-实现销毁回掉（Destruction-Callback）"><span class="nav-text">2.3 实现销毁回掉（Destruction Callback）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-从Scope移除Object"><span class="nav-text">2.4 从Scope移除Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-获取Conversation-ID"><span class="nav-text">2.5 获取Conversation ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-6-Resolving-Contextual-Objects"><span class="nav-text">2.6 Resolving Contextual Objects</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-注册自定义Scope"><span class="nav-text">3. 注册自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-使用自定义Scope"><span class="nav-text">4. 使用自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-测试自定义Scope"><span class="nav-text">5. 测试自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-总结"><span class="nav-text">6. 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-概述"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-创建一个自定义Scope类"><span class="nav-text">2. 创建一个自定义Scope类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-1-管理-Scope-Object-Callback"><span class="nav-text">2.1 管理 Scope Object Callback</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-2-从Scope中获取Object"><span class="nav-text">2.2 从Scope中获取Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-3-实现销毁回调（Destruction-Callback）"><span class="nav-text">2.3 实现销毁回调（Destruction Callback）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-4-从Scope移除Object"><span class="nav-text">2.4 从Scope移除Object</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-5-获取Conversation-ID"><span class="nav-text">2.5 获取Conversation ID</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-6-Resolving-Contextual-Objects"><span class="nav-text">2.6 Resolving Contextual Objects</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-注册自定义Scope"><span class="nav-text">3. 注册自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-使用自定义Scope"><span class="nav-text">4. 使用自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-测试自定义Scope"><span class="nav-text">5. 测试自定义Scope</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-总结"><span class="nav-text">6. 总结</span></a></li></ol></div>
             
 
           </div>
