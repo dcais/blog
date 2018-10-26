@@ -115,25 +115,25 @@
 
 
 
-  <meta name="description" content="rsync命令_Linux rsync 命令 rsync是能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。 1rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/">
-<meta name="keywords" content="bash,command,sync">
+  <meta name="description" content="1. 定义一个继承 ApplicationContextAware 的 bean定义一个类ApplicationContextProvider，继承ApplicationContextAware,并用@Component注册一个bean 123456789101112131415@Componentpublic class ApplicationContextProvider implements">
+<meta name="keywords" content="spring">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rsync简易使用方法">
-<meta property="og:url" content="https://davidcai19840412.github.io/blog/2018/10/23/rsync/index.html">
+<meta property="og:title" content="利用ApplicationContextAware制作一个获取ApplicationContext的Provider">
+<meta property="og:url" content="https://davidcai19840412.github.io/blog/2018/10/26/use-of-application-context-aware/index.html">
 <meta property="og:site_name" content="DCai&#39;s Blog">
-<meta property="og:description" content="rsync命令_Linux rsync 命令 rsync是能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。 1rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/">
+<meta property="og:description" content="1. 定义一个继承 ApplicationContextAware 的 bean定义一个类ApplicationContextProvider，继承ApplicationContextAware,并用@Component注册一个bean 123456789101112131415@Componentpublic class ApplicationContextProvider implements">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-23T02:03:45.748Z">
+<meta property="og:updated_time" content="2018-10-26T03:18:35.373Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rsync简易使用方法">
-<meta name="twitter:description" content="rsync命令_Linux rsync 命令 rsync是能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。 1rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/">
+<meta name="twitter:title" content="利用ApplicationContextAware制作一个获取ApplicationContext的Provider">
+<meta name="twitter:description" content="1. 定义一个继承 ApplicationContextAware 的 bean定义一个类ApplicationContextProvider，继承ApplicationContextAware,并用@Component注册一个bean 123456789101112131415@Componentpublic class ApplicationContextProvider implements">
 
 
 
 
 
 
-  <link rel="canonical" href="https://davidcai19840412.github.io/blog/2018/10/23/rsync/">
+  <link rel="canonical" href="https://davidcai19840412.github.io/blog/2018/10/26/use-of-application-context-aware/">
 
 
 
@@ -143,7 +143,7 @@
   };
 </script>
 
-  <title>rsync简易使用方法 | DCai's Blog</title>
+  <title>利用ApplicationContextAware制作一个获取ApplicationContext的Provider | DCai's Blog</title>
   
 
 
@@ -308,7 +308,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://davidcai19840412.github.io/blog/blog/2018/10/23/rsync/">
+    <link itemprop="mainEntityOfPage" href="https://davidcai19840412.github.io/blog/blog/2018/10/26/use-of-application-context-aware/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="d cai">
@@ -325,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">rsync简易使用方法
+          <h1 class="post-title" itemprop="name headline">利用ApplicationContextAware制作一个获取ApplicationContext的Provider
               
             
           </h1>
@@ -350,7 +350,7 @@
                 
               
 
-              <time title="创建时间：2018-10-23 09:53:50 / 修改时间：10:03:45" itemprop="dateCreated datePublished" datetime="2018-10-23T09:53:50+08:00">2018-10-23</time>
+              <time title="创建时间：2018-10-26 10:54:37 / 修改时间：11:18:35" itemprop="dateCreated datePublished" datetime="2018-10-26T10:54:37+08:00">2018-10-26</time>
             
 
             
@@ -372,7 +372,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/bean/" itemprop="url" rel="index"><span itemprop="name">bean</span></a></span>
 
                 
                 
@@ -406,9 +406,12 @@
       
 
       
-        <h1 id="rsync命令-Linux-rsync-命令"><a href="#rsync命令-Linux-rsync-命令" class="headerlink" title="rsync命令_Linux rsync 命令"></a>rsync命令_Linux rsync 命令</h1><hr>
-<p>rsync是能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/</span><br></pre></td></tr></table></figure>
+        <h1 id="1-定义一个继承-ApplicationContextAware-的-bean"><a href="#1-定义一个继承-ApplicationContextAware-的-bean" class="headerlink" title="1. 定义一个继承 ApplicationContextAware 的 bean"></a>1. 定义一个继承 ApplicationContextAware 的 bean</h1><p>定义一个类ApplicationContextProvider，继承ApplicationContextAware,并用@Component注册一个bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextProvider</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> ApplicationContext <span class="title">getContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> applicationContext;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="2-使用"><a href="#2-使用" class="headerlink" title="2. 使用"></a>2. 使用</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseSample</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Autoware</span></span><br><span class="line">  <span class="keyword">private</span> ApplicationContextProvider applicationContextProvider;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sample</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ApplicationContext appctx = applicationContextProvider.getContext();</span><br><span class="line">    ......</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-实现原理"><a href="#3-实现原理" class="headerlink" title="3. 实现原理"></a>3. 实现原理</h1><p>spirng初始化的bean时，将会查看这个bean是否实现了ApplicationContextAware接口。如果是，将会调用<br>setApplicationContext()方法。我们在ApplicationContextProvider在实现把AppContext的地址保存到了私有变量中。</p>
+<p>spring源码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeAwareInterfaces</span><span class="params">(Object bean)</span> </span>&#123;</span><br><span class="line">        .....</span><br><span class="line"> <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ApplicationContextAware) &#123;</span><br><span class="line">  ((ApplicationContextAware)bean).setApplicationContext(<span class="keyword">this</span>.applicationContext);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -452,11 +455,7 @@
       
         <div class="post-tags">
           
-            <a href="/blog/tags/bash/" rel="tag"># bash</a>
-          
-            <a href="/blog/tags/command/" rel="tag"># command</a>
-          
-            <a href="/blog/tags/sync/" rel="tag"># sync</a>
+            <a href="/blog/tags/spring/" rel="tag"># spring</a>
           
         </div>
       
@@ -469,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2017/10/28/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/blog/2018/10/24/custom-handler-method-argument-resolver/" rel="next" title="自定义HandlerMethodArgumentResolver，用Cookie组装一个简单的Pojo对象">
+                <i class="fa fa-chevron-left"></i> 自定义HandlerMethodArgumentResolver，用Cookie组装一个简单的Pojo对象
               </a>
             
           </div>
@@ -478,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/10/23/linux-mount-harddisk/" rel="prev" title="linux硬盘分区格式化以及挂载">
-                linux硬盘分区格式化以及挂载 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -665,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#rsync命令-Linux-rsync-命令"><span class="nav-text">rsync命令_Linux rsync 命令</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-定义一个继承-ApplicationContextAware-的-bean"><span class="nav-text">1. 定义一个继承 ApplicationContextAware 的 bean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-使用"><span class="nav-text">2. 使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-实现原理"><span class="nav-text">3. 实现原理</span></a></li></ol></div>
             
 
           </div>
