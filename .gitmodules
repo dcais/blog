@@ -1,0 +1,3 @@
+[submodule "themes/next/source/lib/pace"]
+	path = themes/next/source/lib/pace
+	url = git@github.com:theme-next/theme-next-pace.git
