@@ -38,8 +38,8 @@
             {% if theme.gitment.mint and theme.gitment.proxy_gateway %}
                 proxy_gateway: '{{ theme.gitment.proxy_gateway }}',
             {% else %}
-                client_secret: '{{ theme.gitment.client_secret }}',
             {% endif %}
+                client_secret: '{{ theme.gitment.client_secret }}',
                 client_id: '{{ theme.gitment.client_id }}'
             }});
         gitment.render('gitment-container');
