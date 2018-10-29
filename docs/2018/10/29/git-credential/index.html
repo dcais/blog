@@ -115,24 +115,25 @@
 
 
 
-  <meta name="description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+  <meta name="description" content="1. 命令在git仓库目录下执行 123git config user.name xxxgit config user.email xxx@xxx.comgit config credential.helper store 2. 缺点密码将会以明文形式存储在~/.git-credentials文件中，不安全。">
+<meta name="keywords" content="git,command,node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用bash制作守护进程的脚本">
-<meta property="og:url" content="https://dcais.github.io/blog/2018/10/23/bash-process-watcher/index.html">
+<meta property="og:title" content="利用git credential免密认证git http仓库">
+<meta property="og:url" content="https://dcais.github.io/blog/2018/10/29/git-credential/index.html">
 <meta property="og:site_name" content="DCai&#39;s Blog">
-<meta property="og:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+<meta property="og:description" content="1. 命令在git仓库目录下执行 123git config user.name xxxgit config user.email xxx@xxx.comgit config credential.helper store 2. 缺点密码将会以明文形式存储在~/.git-credentials文件中，不安全。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-23T05:25:52.570Z">
+<meta property="og:updated_time" content="2018-10-29T06:37:03.593Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用bash制作守护进程的脚本">
-<meta name="twitter:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+<meta name="twitter:title" content="利用git credential免密认证git http仓库">
+<meta name="twitter:description" content="1. 命令在git仓库目录下执行 123git config user.name xxxgit config user.email xxx@xxx.comgit config credential.helper store 2. 缺点密码将会以明文形式存储在~/.git-credentials文件中，不安全。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://dcais.github.io/blog/2018/10/23/bash-process-watcher/">
+  <link rel="canonical" href="https://dcais.github.io/blog/2018/10/29/git-credential/">
 
 
 
@@ -142,7 +143,7 @@
   };
 </script>
 
-  <title>利用bash制作守护进程的脚本 | DCai's Blog</title>
+  <title>利用git credential免密认证git http仓库 | DCai's Blog</title>
   
 
 
@@ -309,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2018/10/23/bash-process-watcher/">
+    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2018/10/29/git-credential/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="d cai">
@@ -326,7 +327,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用bash制作守护进程的脚本
+          <h1 class="post-title" itemprop="name headline">利用git credential免密认证git http仓库
               
             
           </h1>
@@ -351,7 +352,7 @@
                 
               
 
-              <time title="创建时间：2018-10-23 11:33:40 / 修改时间：13:25:52" itemprop="dateCreated datePublished" datetime="2018-10-23T11:33:40+08:00">2018-10-23</time>
+              <time title="创建时间：2018-10-29 14:32:30 / 修改时间：14:37:03" itemprop="dateCreated datePublished" datetime="2018-10-29T14:32:30+08:00">2018-10-29</time>
             
 
             
@@ -362,6 +363,24 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -370,8 +389,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2018/10/23/bash-process-watcher/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2018/10/23/bash-process-watcher/" itemprop="commentsCount"></span>
+                <a href="/blog/2018/10/29/git-credential/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2018/10/29/git-credential/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -399,19 +418,9 @@
       
 
       
-        <h1 id="运用场景"><a href="#运用场景" class="headerlink" title="运用场景"></a>运用场景</h1><p>在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。</p>
-<h2 id="1-记录进程的PID"><a href="#1-记录进程的PID" class="headerlink" title="1. 记录进程的PID"></a>1. 记录进程的PID</h2><p>为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID</p>
-<p>我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID</p>
-<p>Example:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; ./pid.file &amp;</span><br></pre></td></tr></table></figure>
-<p>这样我们便得到了 myapp.jar的进程PID,并写入了 ./pid.file文件中</p>
-<h2 id="2-监测进程是否在运行"><a href="#2-监测进程是否在运行" class="headerlink" title="2. 监测进程是否在运行"></a>2. 监测进程是否在运行</h2><p>利用 kill -0 检测进程是否存在<br>kill -0 \$pid中的-0表示不发送任何信号给PID对应的进程，但是仍会对变量值PID对应的进程是否存在进行检查，如果\$pid对应的进程存在，则返回0，不存在返回1。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PID=$(cat ./pid.file) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">kill</span> -0 <span class="variable">$&#123;SAUNA_PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">IS_RUNNING=$?</span><br></pre></td></tr></table></figure>
-<h2 id="3-完整脚本"><a href="#3-完整脚本" class="headerlink" title="3. 完整脚本"></a>3. 完整脚本</h2><p>start.sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line">WATCH_PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/watch.pid</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程PID输出到文件</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span> 2&gt;/dev/null &amp;</span><br><span class="line">sleep 5</span><br><span class="line"></span><br><span class="line">sh watch.sh &gt; watch.log 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span></span><br></pre></td></tr></table></figure>
-<p>watch.sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="string">"<span class="variable">$PID_FILE</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="comment">#如果PID文件存在</span></span><br><span class="line">  PID=$(cat <span class="variable">$&#123;SAUNA_PID_FILE&#125;</span>) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  PID=<span class="string">"0000"</span></span><br><span class="line">  IS_RUNNING=1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#检测循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 5 秒检测一次</span></span><br><span class="line">  sleep 5</span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$&#123;IS_RUNNING&#125;</span> -ne 0 ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"service is dead. restarting..."</span>;</span><br><span class="line">    sh start.sh</span><br><span class="line">    <span class="built_in">exit</span> 0;</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong> stop脚本里要kill掉watch.sh ，不然会重复启动。</p>
+        <h1 id="1-命令"><a href="#1-命令" class="headerlink" title="1. 命令"></a>1. 命令</h1><p>在git仓库目录下执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config user.name xxx</span><br><span class="line">git config user.email xxx@xxx.com</span><br><span class="line">git config credential.helper store</span><br></pre></td></tr></table></figure>
+<h1 id="2-缺点"><a href="#2-缺点" class="headerlink" title="2. 缺点"></a>2. 缺点</h1><p>密码将会以明文形式存储在~/.git-credentials文件中，不安全。</p>
 
       
     </div>
@@ -454,6 +463,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/git/" rel="tag"># git</a>
+          
+            <a href="/blog/tags/command/" rel="tag"># command</a>
+          
+            <a href="/blog/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
 
       
       
@@ -463,8 +482,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/10/23/es-server-config/" rel="next" title="ElasticSearch服务器secrity配置">
-                <i class="fa fa-chevron-left"></i> ElasticSearch服务器secrity配置
+              <a href="/blog/2018/10/26/use-of-application-context-aware/" rel="next" title="利用ApplicationContextAware制作一个获取ApplicationContext的Provider">
+                <i class="fa fa-chevron-left"></i> 利用ApplicationContextAware制作一个获取ApplicationContext的Provider
               </a>
             
           </div>
@@ -472,10 +491,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/10/24/spring-custom-scope/" rel="prev" title="Spring自定义Scope (译)">
-                Spring自定义Scope (译) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -667,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运用场景"><span class="nav-number">1.</span> <span class="nav-text">运用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-记录进程的PID"><span class="nav-number">1.1.</span> <span class="nav-text">1. 记录进程的PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-监测进程是否在运行"><span class="nav-number">1.2.</span> <span class="nav-text">2. 监测进程是否在运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-完整脚本"><span class="nav-number">1.3.</span> <span class="nav-text">3. 完整脚本</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-命令"><span class="nav-number">1.</span> <span class="nav-text">1. 命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-缺点"><span class="nav-number">2.</span> <span class="nav-text">2. 缺点</span></a></li></ol></div>
             
 
           </div>
