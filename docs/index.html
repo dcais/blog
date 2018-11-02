@@ -1899,12 +1899,24 @@ Example:
                 
               
 
-              <time title="创建时间：2018-10-23 09:53:50 / 修改时间：10:03:45" itemprop="dateCreated datePublished" datetime="2018-10-23T09:53:50+08:00">2018-10-23</time>
+              <time title="创建时间：2018-10-23 09:53:50" itemprop="dateCreated datePublished" datetime="2018-10-23T09:53:50+08:00">2018-10-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-02 10:03:53" itemprop="dateModified" datetime="2018-11-02T10:03:53+08:00">2018-11-02</time>
               
             
           </span>
@@ -1959,8 +1971,8 @@ Example:
           
           rsync命令_Linux rsync 命令
 rsync是能同步更新两处计算机的文件与目录，并适当利用差分编码以减少数据传输量。rsync中的一项同类软件不常见的重要特性是每个目标的镜像只需发送一次。rsync可以拷贝／显示目录内容，以及拷贝文件，并可选压缩以及递归拷贝。
-1rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/
-          
+1234 rsync -avp /data/deploy/opt/data_bk/ /data/deploy/opt/data/# 非标ssh端口 rsync -avp -e "ssh -p 2245" /usr/sqmall/ root@bra
+          ...
           <!--noindex-->
           
             <div class="post-button text-center">
