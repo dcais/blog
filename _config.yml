@@ -83,3 +83,8 @@ deploy:
   # repo: git@github.com:davidcai19840412/myblog.git
   # branch: [branch]
   #message: [message]
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
