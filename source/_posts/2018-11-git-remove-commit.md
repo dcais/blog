@@ -8,7 +8,7 @@ categories: [git]
 # 方法一
 
 ```bash
-git checkout f9782944b2f80433ead80de6dbe517bd7f9f7974
+git reset --hard f9782944b2f80433ead80de6dbe517bd7f9f7974
 git push origin HEAD --force
 ```
 
