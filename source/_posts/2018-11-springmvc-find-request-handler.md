@@ -398,4 +398,455 @@ protected HandlerExecutionChain getHandler(HttpServletRequest request) throws Ex
 ```
 
 handlerMapping 调用了 getHandler(request)获取 HandlerExecutionChain 实例，那么我们来看一下
-RequestMappingHanderMapping 的个 handler 方法。
+RequestMappingHanderMapping 的 getHandler 方法。
+
+```java
+public abstract class AbstractHandlerMapping extends WebApplicationObjectSupport implements HandlerMapping, Ordered {
+  @Override
+  @Nullable
+  public final HandlerExecutionChain getHandler(HttpServletRequest request) throws Exception {
+    Object handler = getHandlerInternal(request);
+    if (handler == null) {
+      handler = getDefaultHandler();
+    }
+    if (handler == null) {
+      return null;
+    }
+    // Bean name or resolved handler?
+    if (handler instanceof String) {
+      String handlerName = (String) handler;
+      handler = obtainApplicationContext().getBean(handlerName);
+
+    HandlerExecutionChain executionChain = getHandlerExecutionChain(handler, request);
+    if (CorsUtils.isCorsRequest(request)) {
+      CorsConfiguration globalConfig = this.globalCorsConfigSource.getCorsConfiguration(request);
+      CorsConfiguration handlerConfig = getCorsConfiguration(handler, request);
+      CorsConfiguration config = (globalConfig != null ? globalConfig.combine(handlerConfig) : handlerConfig);
+      executionChain = getCorsHandlerExecutionChain(request, executionChain, config);
+    }
+    return executionChain;
+  }
+}
+```
+
+调用了 getHandlerInternal,
+从 mappingRegistry 中获取匹配路径的 mapping，并排序获取最匹配的 handlerMethod
+
+```java
+public abstract class AbstractHandlerMethodMapping<T> extends AbstractHandlerMapping implements InitializingBean {
+  @Override
+  protected HandlerMethod getHandlerInternal(HttpServletRequest request) throws Exception {
+    String lookupPath = getUrlPathHelper().getLookupPathForRequest(request);
+    if (logger.isDebugEnabled()) {
+      logger.debug("Looking up handler method for path " + lookupPath);
+    }
+    this.mappingRegistry.acquireReadLock();
+    try {
+      HandlerMethod handlerMethod = lookupHandlerMethod(lookupPath, request);
+      if (logger.isDebugEnabled()) {
+        if (handlerMethod != null) {
+          logger.debug("Returning handler method [" + handlerMethod + "]");
+        }
+        else {
+          logger.debug("Did not find handler method for [" + lookupPath + "]");
+        }
+      }
+      return (handlerMethod != null ? handlerMethod.createWithResolvedBean() : null);
+    }
+    finally {
+      this.mappingRegistry.releaseReadLock();
+    }
+  }
+
+  protected HandlerMethod lookupHandlerMethod(String lookupPath, HttpServletRequest request) throws Exception {
+    List<Match> matches = new ArrayList<>();
+    List<T> directPathMatches = this.mappingRegistry.getMappingsByUrl(lookupPath);
+    if (directPathMatches != null) {
+      addMatchingMappings(directPathMatches, matches, request);
+    }
+    if (matches.isEmpty()) {
+      // No choice but to go through all mappings...
+      addMatchingMappings(this.mappingRegistry.getMappings().keySet(), matches, request);
+    }
+
+    if (!matches.isEmpty()) {
+      Comparator<Match> comparator = new MatchComparator(getMappingComparator(request));
+      matches.sort(comparator);
+      if (logger.isTraceEnabled()) {
+        logger.trace("Found " + matches.size() + " matching mapping(s) for [" + lookupPath + "] : " + matches);
+      }
+      Match bestMatch = matches.get(0);
+      if (matches.size() > 1) {
+        if (CorsUtils.isPreFlightRequest(request)) {
+          return PREFLIGHT_AMBIGUOUS_MATCH;
+        }
+        Match secondBestMatch = matches.get(1);
+        if (comparator.compare(bestMatch, secondBestMatch) == 0) {
+          Method m1 = bestMatch.handlerMethod.getMethod();
+          Method m2 = secondBestMatch.handlerMethod.getMethod();
+          throw new IllegalStateException("Ambiguous handler methods mapped for HTTP path '" +
+              request.getRequestURL() + "': {" + m1 + ", " + m2 + "}");
+        }
+      }
+      handleMatch(bestMatch.mapping, lookupPath, request);
+      return bestMatch.handlerMethod;
+    }
+    else {
+      return handleNoMatch(this.mappingRegistry.getMappings().keySet(), lookupPath, request);
+    }
+  }
+
+  private void addMatchingMappings(Collection<T> mappings, List<Match> matches, HttpServletRequest request) {
+    for (T mapping : mappings) {
+      T match = getMatchingMapping(mapping, request);
+      if (match != null) {
+        matches.add(new Match(match, this.mappingRegistry.getMappings().get(mapping)));
+      }
+    }
+  }
+}
+```
+
+获取到了 handlerMethod 以后调用了 getHandlerExecutionChain 把匹配的 Intercepters 组装成了 HandlerExecutionChain 对象
+
+```java
+  protected HandlerExecutionChain getHandlerExecutionChain(Object handler, HttpServletRequest request) {
+    HandlerExecutionChain chain = (handler instanceof HandlerExecutionChain ?
+        (HandlerExecutionChain) handler : new HandlerExecutionChain(handler));
+
+    String lookupPath = this.urlPathHelper.getLookupPathForRequest(request);
+    for (HandlerInterceptor interceptor : this.adaptedInterceptors) {
+      if (interceptor instanceof MappedInterceptor) {
+        MappedInterceptor mappedInterceptor = (MappedInterceptor) interceptor;
+        if (mappedInterceptor.matches(lookupPath, this.pathMatcher)) {
+          chain.addInterceptor(mappedInterceptor.getInterceptor());
+        }
+      }
+      else {
+        chain.addInterceptor(interceptor);
+      }
+    }
+    return chain;
+  }
+```
+
+# 2. 获取 HandlerAdapter
+
+回到 doDispatchServlet 的代码片段
+
+```java
+        // Determine handler adapter for the current request.
+        HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());
+```
+
+调用了 getHandlerAdapter 获取 HandlerAdapter 实例 ha。
+DispatchServlet 初始化的时候会把 appContext 里所有实现了 HandlerAdapter 的 bean 添加到 this.handlerAdapters 里，
+然后通过 for 循环查找支持传入的 handler 的 HanderAdapter。支持 RequestMappingHandlerMapping 的是
+RequestMappingHandlerAdapter。
+
+```java
+  protected HandlerAdapter getHandlerAdapter(Object handler) throws ServletException {
+    if (this.handlerAdapters != null) {
+      for (HandlerAdapter ha : this.handlerAdapters) {
+        if (logger.isTraceEnabled()) {
+          logger.trace("Testing handler adapter [" + ha + "]");
+        }
+        if (ha.supports(handler)) {
+          return ha;
+        }
+      }
+    }
+    throw new ServletException("No adapter for handler [" + handler +
+        "]: The DispatcherServlet configuration needs to include a HandlerAdapter that supports this handler");
+  }
+```
+
+RequestMappingHandlerAdapter 的 support 方法，如果 handler 的类型是 HandlerMethod 即支持，RequestMappingHandlerMapping 返回的 handler 类型就是 HandlerMethod
+
+```java
+  @Override
+  public final boolean supports(Object handler) {
+    return (handler instanceof HandlerMethod && supportsInternal((HandlerMethod) handler));
+  }
+
+  @Override
+  protected boolean supportsInternal(HandlerMethod handlerMethod) {
+    return true;
+  }
+```
+
+# 3. HandlerAdapter 执行 handler 方法。
+
+回到 doDispatchServlet 的代码片段,获取 ha 以后，先调用了 preHandle 里的 interceptors，如果返回是 true，
+则执行了 ha.handle，执行了 handler。
+
+```java
+...
+...
+        if (!mappedHandler.applyPreHandle(processedRequest, response)) {
+          return;
+        }
+
+        // Actually invoke the handler.
+        mv = ha.handle(processedRequest, response, mappedHandler.getHandler());
+
+        if (asyncManager.isConcurrentHandlingStarted()) {
+          return;
+        }
+...
+...
+```
+
+# 3.1 RequestMappingHandlerAdapterd 的 handler 方法
+
+```java
+	@Override
+	@Nullable
+	public final ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+
+		return handleInternal(request, response, (HandlerMethod) handler);
+	}
+```
+
+handlerInternal 调用了 invokeHandlerMethod 执行 handlerMethod
+
+```java
+	@Override
+	protected ModelAndView handleInternal(HttpServletRequest request,
+			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+
+		ModelAndView mav;
+		checkRequest(request);
+
+		// Execute invokeHandlerMethod in synchronized block if required.
+		if (this.synchronizeOnSession) {
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				Object mutex = WebUtils.getSessionMutex(session);
+				synchronized (mutex) {
+					mav = invokeHandlerMethod(request, response, handlerMethod);
+				}
+			}
+			else {
+				// No HttpSession available -> no mutex necessary
+				mav = invokeHandlerMethod(request, response, handlerMethod);
+			}
+		}
+		else {
+			// No synchronization on session demanded at all...
+			mav = invokeHandlerMethod(request, response, handlerMethod);
+		}
+
+		if (!response.containsHeader(HEADER_CACHE_CONTROL)) {
+			if (getSessionAttributesHandler(handlerMethod).hasSessionAttributes()) {
+				applyCacheSeconds(response, this.cacheSecondsForSessionAttributeHandlers);
+			}
+			else {
+				prepareResponse(response);
+			}
+		}
+
+		return mav;
+	}
+```
+
+invokeHandlerMethod 组装了两个实例，
+ServletInvocableHandlerMethod 对象 invocableMethod 和 ModelAndViewContainer 对象 mavContainer
+
+把一堆必要的信息传递给了 invocableMethod,比如参数解释器 this.argumentResolvers,返回值处理器 this.retrunValueHandler 等。。。
+
+然后调用了方法 invocableMethod.invokeAndHandle(webRequest, mavContainer);
+
+```java
+	@Nullable
+	protected ModelAndView invokeHandlerMethod(HttpServletRequest request,
+			HttpServletResponse response, HandlerMethod handlerMethod) throws Exception {
+
+		ServletWebRequest webRequest = new ServletWebRequest(request, response);
+		try {
+			WebDataBinderFactory binderFactory = getDataBinderFactory(handlerMethod);
+			ModelFactory modelFactory = getModelFactory(handlerMethod, binderFactory);
+
+			ServletInvocableHandlerMethod invocableMethod = createInvocableHandlerMethod(handlerMethod);
+			if (this.argumentResolvers != null) {
+				invocableMethod.setHandlerMethodArgumentResolvers(this.argumentResolvers);
+			}
+			if (this.returnValueHandlers != null) {
+				invocableMethod.setHandlerMethodReturnValueHandlers(this.returnValueHandlers);
+			}
+			invocableMethod.setDataBinderFactory(binderFactory);
+			invocableMethod.setParameterNameDiscoverer(this.parameterNameDiscoverer);
+
+			ModelAndViewContainer mavContainer = new ModelAndViewContainer();
+			mavContainer.addAllAttributes(RequestContextUtils.getInputFlashMap(request));
+			modelFactory.initModel(webRequest, mavContainer, invocableMethod);
+			mavContainer.setIgnoreDefaultModelOnRedirect(this.ignoreDefaultModelOnRedirect);
+
+			AsyncWebRequest asyncWebRequest = WebAsyncUtils.createAsyncWebRequest(request, response);
+			asyncWebRequest.setTimeout(this.asyncRequestTimeout);
+
+			WebAsyncManager asyncManager = WebAsyncUtils.getAsyncManager(request);
+			asyncManager.setTaskExecutor(this.taskExecutor);
+			asyncManager.setAsyncWebRequest(asyncWebRequest);
+			asyncManager.registerCallableInterceptors(this.callableInterceptors);
+			asyncManager.registerDeferredResultInterceptors(this.deferredResultInterceptors);
+
+			if (asyncManager.hasConcurrentResult()) {
+				Object result = asyncManager.getConcurrentResult();
+				mavContainer = (ModelAndViewContainer) asyncManager.getConcurrentResultContext()[0];
+				asyncManager.clearConcurrentResult();
+				if (logger.isDebugEnabled()) {
+					logger.debug("Found concurrent result value [" + result + "]");
+				}
+				invocableMethod = invocableMethod.wrapConcurrentResult(result);
+			}
+
+			invocableMethod.invokeAndHandle(webRequest, mavContainer);
+			if (asyncManager.isConcurrentHandlingStarted()) {
+				return null;
+			}
+
+			return getModelAndView(mavContainer, modelFactory, webRequest);
+		}
+		finally {
+			webRequest.requestCompleted();
+    }
+  }
+```
+
+invokeAndHandle 调用了 invokeAndHandle 处理请求，如果返回值为空且请求被处理则调用 mavContainer.setRequestHandled(true)后返回。
+如果返回值不为空则使用 this.returnValueHandlers.handleReturnValue 处理返回值。
+
+```java
+	public void invokeAndHandle(ServletWebRequest webRequest, ModelAndViewContainer mavContainer,
+			Object... providedArgs) throws Exception {
+
+		Object returnValue = invokeForRequest(webRequest, mavContainer, providedArgs);
+		setResponseStatus(webRequest);
+
+		if (returnValue == null) {
+			if (isRequestNotModified(webRequest) || getResponseStatus() != null || mavContainer.isRequestHandled()) {
+				mavContainer.setRequestHandled(true);
+				return;
+			}
+		}
+		else if (StringUtils.hasText(getResponseStatusReason())) {
+			mavContainer.setRequestHandled(true);
+			return;
+		}
+
+		mavContainer.setRequestHandled(false);
+		Assert.state(this.returnValueHandlers != null, "No return value handlers");
+		try {
+			this.returnValueHandlers.handleReturnValue(
+					returnValue, getReturnValueType(returnValue), mavContainer, webRequest);
+		}
+		catch (Exception ex) {
+			if (logger.isTraceEnabled()) {
+				logger.trace(getReturnValueHandlingErrorMessage("Error handling return value", returnValue), ex);
+			}
+			throw ex;
+		}
+	}
+```
+
+getMethodParameters 先调用了方法 getMethodArgumentValues(),getMethodArgumentValues 里为每一个参数检查是否有支持的参数解释器 argumentResovler，如果有的话则装备一个参数实例。如果找不到 methodResolver 的话就抛出异常。
+得到参数列表 args 以后调用 doInvoke()方法。
+
+```java
+  public Object invokeForRequest(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,
+			Object... providedArgs) throws Exception {
+
+		Object[] args = getMethodArgumentValues(request, mavContainer, providedArgs);
+		if (logger.isTraceEnabled()) {
+			logger.trace("Invoking '" + ClassUtils.getQualifiedMethodName(getMethod(), getBeanType()) +
+					"' with arguments " + Arrays.toString(args));
+		}
+		Object returnValue = doInvoke(args);
+		if (logger.isTraceEnabled()) {
+			logger.trace("Method [" + ClassUtils.getQualifiedMethodName(getMethod(), getBeanType()) +
+					"] returned [" + returnValue + "]");
+		}
+		return returnValue;
+	}
+
+
+  /**
+	 * Get the method argument values for the current request.
+	 */
+	private Object[] getMethodArgumentValues(NativeWebRequest request, @Nullable ModelAndViewContainer mavContainer,
+			Object... providedArgs) throws Exception {
+
+		MethodParameter[] parameters = getMethodParameters();
+		Object[] args = new Object[parameters.length];
+		for (int i = 0; i < parameters.length; i++) {
+			MethodParameter parameter = parameters[i];
+			parameter.initParameterNameDiscovery(this.parameterNameDiscoverer);
+			args[i] = resolveProvidedArgument(parameter, providedArgs);
+			if (args[i] != null) {
+				continue;
+			}
+			if (this.argumentResolvers.supportsParameter(parameter)) {
+				try {
+					args[i] = this.argumentResolvers.resolveArgument(
+							parameter, mavContainer, request, this.dataBinderFactory);
+					continue;
+				}
+				catch (Exception ex) {
+					if (logger.isDebugEnabled()) {
+						logger.debug(getArgumentResolutionErrorMessage("Failed to resolve", i), ex);
+					}
+					throw ex;
+				}
+			}
+			if (args[i] == null) {
+				throw new IllegalStateException("Could not resolve method parameter at index " +
+						parameter.getParameterIndex() + " in " + parameter.getExecutable().toGenericString() +
+						": " + getArgumentResolutionErrorMessage("No suitable resolver for", i));
+			}
+		}
+		return args;
+	}
+```
+
+doInvoke 调用了 getBridgedMethod().invoke(getBean(), args) 执行了我们用@RequestMapping 修饰的方法，并返回了结果。
+
+```java
+public class InvocableHandlerMethod
+...
+...
+	protected Object doInvoke(Object... args) throws Exception {
+		ReflectionUtils.makeAccessible(getBridgedMethod());
+		try {
+			return getBridgedMethod().invoke(getBean(), args);
+		}
+		catch (IllegalArgumentException ex) {
+			assertTargetBean(getBridgedMethod(), getBean(), args);
+			String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");
+			throw new IllegalStateException(getInvocationErrorMessage(text, args), ex);
+		}
+		catch (InvocationTargetException ex) {
+			// Unwrap for HandlerExceptionResolvers ...
+			Throwable targetException = ex.getTargetException();
+			if (targetException instanceof RuntimeException) {
+				throw (RuntimeException) targetException;
+			}
+			else if (targetException instanceof Error) {
+				throw (Error) targetException;
+			}
+			else if (targetException instanceof Exception) {
+				throw (Exception) targetException;
+			}
+			else {
+				String text = getInvocationErrorMessage("Failed to invoke handler method", args);
+				throw new IllegalStateException(text, targetException);
+			}
+		}
+	}
+  ...
+  ...
+}
+```
+
+# 3.2 处理返回值
