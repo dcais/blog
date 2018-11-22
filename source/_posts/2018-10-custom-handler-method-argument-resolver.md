@@ -1,20 +1,20 @@
 ---
 title: 自定义HandlerMethodArgumentResolver，用Cookie组装一个简单的Pojo对象
 date: 2018-10-24 21:14:18
-tags: [spring,handlerMethodResolver,springMvc]
+tags: [spring, handlerMethodResolver, springMvc]
 categories: [spring]
 ---
 
 # 1. 概述
 
-SpringMVC为我们提供了@CookieValue来注入cookie某一个key的值，但我们常需要@RequestBody一样，把Cookie组装成一个pojo对象。
-这篇教程将会演示我们怎样自定义一个HandlerMethodArgumentResolver完成从Cookie组装pojo对象的需求。
+SpringMVC 为我们提供了@CookieValue 来注入 cookie 某一个 key 的值，但我们常需要@RequestBody 一样，把 Cookie 组装成一个 pojo 对象。
+这篇教程将会演示我们怎样自定义一个 HandlerMethodArgumentResolver 完成从 Cookie 组装 pojo 对象的需求。
 
-# 2. 自定义HandlerMethodArgumentResolver
+# 2. 自定义 HandlerMethodArgumentResolver
 
-# 2.1 定义Annotation
+# 2.1 定义 Annotation
 
-我们先定义一个Annotation，叫CookieObject。
+我们先定义一个 Annotation，叫 CookieObject。
 
 ```java
 @Target(ElementType.PARAMETER)
@@ -24,16 +24,16 @@ public @interface CookieObject {
 }
 ```
 
-# 2.2 实现HandlerMethodArgumentResolver接口
+# 2.2 实现 HandlerMethodArgumentResolver 接口
 
-再定义个CookieObjectMethodArgumentResolver类，实现HandlerMethodArgumentResolver接口
-HandlerMethodArgumentResolver有两个method.
+再定义个 CookieObjectMethodArgumentResolver 类，实现 HandlerMethodArgumentResolver 接口
+HandlerMethodArgumentResolver 有两个 method.
 
 ```java
 boolean supportsParameter(MethodParameter parameter);
 ```
 
-返回true/false,表示resolver是否支持处理该参数，我们将在他的实现里，判断参数是否携带@CookieObject.
+返回 true/false,表示 resolver 是否支持处理该参数，我们将在他的实现里，判断参数是否携带@CookieObject.
 
 ```java
 Object resolveArgument(MethodParameter parameter, @Nullable ModelAndViewContainer mavContainer,
@@ -104,11 +104,11 @@ public class CookieObjectMethodArgumentResolver implements HandlerMethodArgument
 }
 ```
 
-# 2.3 加入argumentResolvers列表
+# 2.3 加入 argumentResolvers 列表
 
-最后再SpringMVC的配置中把我们定义的CookieObjectMethodArgumentResolver实例化后加入argumentResolvers列表。
+最后再 SpringMVC 的配置中把我们定义的 CookieObjectMethodArgumentResolver 实例化后加入 argumentResolvers 列表。
 
-``java
+```java
 @Configuration
 public class WebConfig extends WebMvcConfigurationSupport {
     @Override
@@ -121,7 +121,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
 # 3. 使用
 
-# 3.1 定义一个pojo
+# 3.1 定义一个 pojo
 
 ```java
 @Data
@@ -133,7 +133,7 @@ public class MyCookieParam  {
 }
 ```
 
-# 3.2 在Controller中接收
+# 3.2 在 Controller 中接收
 
 ```java
     @RequestMapping("/testCookieObject")
