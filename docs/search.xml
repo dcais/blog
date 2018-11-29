@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>国内安装minibuke</title>
+      <link href="/blog/2018/11/29/install-minibuke-china/"/>
+      <url>/blog/2018/11/29/install-minibuke-china/</url>
+      
+        <content type="html"><![CDATA[<p>clone 阿里的 minibuke 仓库</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AliyunContainerService/minikube</span><br></pre></td></tr></table></figure><p>切换到阿里云分支 aliyun-v0.30.0</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir <span class="variable">$GOPATH</span>/src/k8s.io</span><br><span class="line">mv minikube <span class="variable">$GOPATH</span>/src/k8s.io/</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$GOPATH</span>/src/k8s.io/minikube</span><br><span class="line">make</span><br><span class="line">cp out/minikube /usr/<span class="built_in">local</span>/bin/</span><br><span class="line">chmod a+x/usr/<span class="built_in">local</span>/bin/minikube</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> k8s </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>SpringMVC源码解析(二) - 怎样找到处理Http请求的Method</title>
       <link href="/blog/2018/11/17/springmvc-find-request-handler/"/>
       <url>/blog/2018/11/17/springmvc-find-request-handler/</url>
