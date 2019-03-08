@@ -340,6 +340,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2018/10/23/bash-process-watcher/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="d cai">
+      <meta itemprop="description" content="代码的世界学无止尽">
+      <meta itemprop="image" content="/blog/images/fingerprint.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DCai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/blog/2018/10/23/bash-process-watcher/" itemprop="url">
+                  利用bash制作守护进程的脚本
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-23 11:33:40 / 修改时间：13:25:52" itemprop="dateCreated datePublished" datetime="2018-10-23T11:33:40+08:00">2018-10-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。
+1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID
+我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID
+Example:
+12#!/bin/bashjava -jar myapp.jar &amp; echo $! &gt; ./pid.file &amp;
+这样我们便得到了 myapp.jar的
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2018/10/23/bash-process-watcher/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2018/10/23/es-server-config/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1069,7 +1222,7 @@ rsync是能同步更新两处计算机的文件与目录，并适当利用差分
                 
                   <a href="/blog/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1149,7 +1302,9 @@ rsync是能同步更新两处计算机的文件与目录，并适当利用差分
                     
                       
                     
-                    <span class="site-state-item-count">22</span>
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1198,7 +1353,7 @@ rsync是能同步更新两处计算机的文件与目录，并适当利用差分
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright"> &copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright"> &copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

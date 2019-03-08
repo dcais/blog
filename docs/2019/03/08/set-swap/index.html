@@ -117,23 +117,25 @@
 
 
 
-  <meta name="description" content="代码的世界学无止尽">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DCai&#39;s Blog">
-<meta property="og:url" content="https://dcais.github.io/blog/tags/command/index.html">
+  <meta name="description" content="创建交换文件。  1dd if=/dev/zero of=/opt/swap bs=4096 count=2048000  使用以下命令来设置交换文件：  1mkswap /opt/swap  设置文件权限  1chmod 0600 /opt/swap  启用交换分区文件：要立即启用交换文件而不是在引导时自动启用，使用以下命令：  1swapon /opt/swap  下次启动启用swap。">
+<meta name="keywords" content="bash,ssh,swap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux设置虚拟内存">
+<meta property="og:url" content="https://dcais.github.io/blog/2019/03/08/set-swap/index.html">
 <meta property="og:site_name" content="DCai&#39;s Blog">
-<meta property="og:description" content="代码的世界学无止尽">
+<meta property="og:description" content="创建交换文件。  1dd if=/dev/zero of=/opt/swap bs=4096 count=2048000  使用以下命令来设置交换文件：  1mkswap /opt/swap  设置文件权限  1chmod 0600 /opt/swap  启用交换分区文件：要立即启用交换文件而不是在引导时自动启用，使用以下命令：  1swapon /opt/swap  下次启动启用swap。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-08T01:58:24.596Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DCai&#39;s Blog">
-<meta name="twitter:description" content="代码的世界学无止尽">
+<meta name="twitter:title" content="linux设置虚拟内存">
+<meta name="twitter:description" content="创建交换文件。  1dd if=/dev/zero of=/opt/swap bs=4096 count=2048000  使用以下命令来设置交换文件：  1mkswap /opt/swap  设置文件权限  1chmod 0600 /opt/swap  启用交换分区文件：要立即启用交换文件而不是在引导时自动启用，使用以下命令：  1swapon /opt/swap  下次启动启用swap。">
 
 
 
 
 
 
-  <link rel="canonical" href="https://dcais.github.io/blog/tags/command/">
+  <link rel="canonical" href="https://dcais.github.io/blog/2019/03/08/set-swap/">
 
 
 
@@ -143,7 +145,7 @@
   };
 </script>
 
-  <title>标签: command | DCai's Blog</title>
+  <title>linux设置虚拟内存 | DCai's Blog</title>
   
 
 
@@ -192,7 +194,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -241,7 +243,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/blog/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
   </li>
@@ -277,25 +279,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -342,82 +325,251 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>command<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2019/03/08/set-swap/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="d cai">
+      <meta itemprop="description" content="代码的世界学无止尽">
+      <meta itemprop="image" content="/blog/images/fingerprint.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DCai's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/blog/2018/10/29/git-credential/" itemprop="url">
-              
-                <span itemprop="name">利用git credential免密认证git http仓库</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">linux设置虚拟内存
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-29T14:32:30+08:00" content="2018-10-29">
-          10-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-08 09:53:50 / 修改时间：09:58:24" itemprop="dateCreated datePublished" datetime="2019-03-08T09:53:50+08:00">2019-03-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/blog/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/03/08/set-swap/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2019/03/08/set-swap/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/blog/2018/10/23/rsync/" itemprop="url">
-              
-                <span itemprop="name">rsync简易使用方法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-10-23T09:53:50+08:00" content="2018-10-23">
-          10-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <ol>
+<li>创建交换文件。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/opt/swap bs=4096 count=2048000</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用以下命令来设置交换文件：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap /opt/swap</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>设置文件权限</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 0600 /opt/swap</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>启用交换分区文件：<br>要立即启用交换文件而不是在引导时自动启用，使用以下命令：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swapon /opt/swap</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>下次启动启用swap。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/fstab</span><br><span class="line">/opt/swap     swap      swap defaults 0 0</span><br></pre></td></tr></table></figure>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/blog/images/alipay.jpg" alt="d cai 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/blog/tags/bash/" rel="tag"># bash</a>
+          
+            <a href="/blog/tags/ssh/" rel="tag"># ssh</a>
+          
+            <a href="/blog/tags/swap/" rel="tag"># swap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/11/29/install-minibuke-china/" rel="next" title="国内安装minibuke">
+                <i class="fa fa-chevron-left"></i> 国内安装minibuke
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -703,6 +855,10 @@
   
 
   
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -735,6 +891,31 @@
 
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'dcais',
+            repo: 'blog',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                proxy_gateway: 'https://cors.wenjunjiang.win/?remoteUrl=https://github.com',
+            
+                client_secret: '726d87c8d3739f9d1888b636161c6e9413636c1c',
+                client_id: 'cf586e542da8e8e260ef'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
