@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dcais.github.io/blog/2019/04/23/unbutu-gui-switch/</loc>
+    
+    <lastmod>2019-04-23T02:05:31.156Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://dcais.github.io/blog/2019/03/08/set-swap/</loc>
     
     <lastmod>2019-03-08T01:58:24.596Z</lastmod>
@@ -51,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://dcais.github.io/blog/2018/10/29/git-credential/</loc>
-    
-    <lastmod>2018-11-05T07:11:31.868Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://dcais.github.io/blog/2018/10/23/rsync/</loc>
     
     <lastmod>2018-11-05T07:11:31.868Z</lastmod>
@@ -65,14 +65,21 @@
   </url>
   
   <url>
-    <loc>https://dcais.github.io/blog/2018/10/26/use-of-application-context-aware/</loc>
+    <loc>https://dcais.github.io/blog/2018/10/29/git-credential/</loc>
+    
+    <lastmod>2018-11-05T07:11:31.868Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dcais.github.io/blog/2018/10/24/spring-custom-scope/</loc>
     
     <lastmod>2018-11-05T07:00:38.460Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://dcais.github.io/blog/2018/10/24/spring-custom-scope/</loc>
+    <loc>https://dcais.github.io/blog/2018/10/26/use-of-application-context-aware/</loc>
     
     <lastmod>2018-11-05T07:00:38.460Z</lastmod>
     
