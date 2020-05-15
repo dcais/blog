@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>docker-ce 离线安装</title>
+      <link href="/blog/2020/05/15/docker-ce-offline-install/"/>
+      <url>/blog/2020/05/15/docker-ce-offline-install/</url>
+      
+        <content type="html"><![CDATA[<h2 id="下载最新的docker-ce安装包"><a href="#下载最新的docker-ce安装包" class="headerlink" title="下载最新的docker-ce安装包"></a>下载最新的docker-ce安装包</h2><p>下载最新的repo文件 <a href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a></p><h2 id="下载最新版本的-cotainerd-io-docker-ce-docker-ce-cli"><a href="#下载最新版本的-cotainerd-io-docker-ce-docker-ce-cli" class="headerlink" title="下载最新版本的 cotainerd.io,docker-ce,docker-ce-cli"></a>下载最新版本的 cotainerd.io,docker-ce,docker-ce-cli</h2><p>下载地址：<br>官方：<a href="https://download.docker.com/linux/centos/7/x86_64/stable/Packages/" target="_blank" rel="noopener">https://download.docker.com/linux/centos/7/x86_64/stable/Packages/</a><br>阿里云镜像：<a href="http://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/stable/Packages/" target="_blank" rel="noopener">http://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/stable/Packages/</a></p><h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><p>1、添加repo：将下载好的docker-ce.repo文件拷贝到/etc/etc/yum.repos.d/下；</p><p>2、按顺序依次安装containerd.io、docker-ce-cli、container-selinux和docker-ce包</p><h2 id="解决缺少依赖的问题"><a href="#解决缺少依赖的问题" class="headerlink" title="解决缺少依赖的问题"></a>解决缺少依赖的问题</h2><p>出现 “&gt;=版本号”：说明你的系统上已经安装了这些包，只是这些包不是最新的，需要升级<br>  以policycoreutils包为例，可以在<a href="https://pkgs.org/" target="_blank" rel="noopener">https://pkgs.org/</a>上搜索对应的最新的rpm包。</p><h2 id="docker-ce-proxy设置"><a href="#docker-ce-proxy设置" class="headerlink" title="docker-ce proxy设置"></a>docker-ce proxy设置</h2><p>参考 <a href="https://docs.docker.com/config/daemon/systemd/" target="_blank" rel="noopener">官网文档</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 运维 docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>我的vscode配置</title>
       <link href="/blog/2019/06/11/my-vscode-config/"/>
       <url>/blog/2019/06/11/my-vscode-config/</url>

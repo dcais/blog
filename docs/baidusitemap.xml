@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dcais.github.io/blog/blog/2020/05/15/docker-ce-offline-install/</loc>
+    <lastmod>2020-05-15T07:07:12.786Z</lastmod>
+  </url>  <url>
     <loc>https://dcais.github.io/blog/blog/2019/06/11/my-vscode-config/</loc>
     <lastmod>2019-06-11T09:12:49.418Z</lastmod>
   </url>  <url>
@@ -28,10 +31,10 @@
     <loc>https://dcais.github.io/blog/blog/2018/11/03/ssh-remote-command/</loc>
     <lastmod>2018-11-05T07:11:31.871Z</lastmod>
   </url>  <url>
-    <loc>https://dcais.github.io/blog/blog/2018/10/23/rsync/</loc>
+    <loc>https://dcais.github.io/blog/blog/2018/10/29/git-credential/</loc>
     <lastmod>2018-11-05T07:11:31.868Z</lastmod>
   </url>  <url>
-    <loc>https://dcais.github.io/blog/blog/2018/10/29/git-credential/</loc>
+    <loc>https://dcais.github.io/blog/blog/2018/10/23/rsync/</loc>
     <lastmod>2018-11-05T07:11:31.868Z</lastmod>
   </url>  <url>
     <loc>https://dcais.github.io/blog/blog/2018/10/24/spring-custom-scope/</loc>
