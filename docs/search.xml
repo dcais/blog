@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>浅谈设计模式原则</title>
+      <link href="/blog/2020/10/20/design-pattern-principal/"/>
+      <url>/blog/2020/10/20/design-pattern-principal/</url>
+      
+        <content type="html"><![CDATA[<p>设计模式原则大概有一下几种：</p><ol><li>开闭原则</li><li>里氏原则</li><li>依赖倒置原则</li><li>单一职责原则</li><li>接口隔离原则</li><li>迪米特原则</li><li>合成复用原则</li></ol><p>其中，最重要的是开闭原则，它是面向对象设计的终极目标。<br>所谓开闭指的是对修改关闭，对扩展开放。<br>开闭原则是当应用需求改变时，在不修改软件实体的源代码得前提下，可以扩展模块功能，使其满足新的需求。</p><p>软件遵守开闭原则的话，软件测试只要对扩展的代码进行测试就可以了。</p><p>而其他的原则则是为了达到开闭原则的目标的具体方案。</p><p><strong>里氏原则</strong> 禁止破换继承关系。</p><p><strong>依赖倒置</strong> 让我们面对接口编程。</p><p><strong>单一职责</strong> 描述了类职责的切分。</p><p><strong>接口隔离</strong> 描述了接口设计尽量要简单。</p><p><strong>迪米特原则</strong> 描述了降低耦合度，尽量只和必要的实体通信。</p><p><strong>组合复用</strong> 描述了优先用组合或聚合关系复用，少用继承妇幼</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 设计 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>docker-ce 离线安装</title>
       <link href="/blog/2020/05/15/docker-ce-offline-install/"/>
       <url>/blog/2020/05/15/docker-ce-offline-install/</url>

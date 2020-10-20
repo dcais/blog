@@ -117,24 +117,25 @@
 
 
 
-  <meta name="description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+  <meta name="description" content="设计模式原则大概有一下几种：  开闭原则 里氏原则 依赖倒置原则 单一职责原则 接口隔离原则 迪米特原则 合成复用原则  其中，最重要的是开闭原则，它是面向对象设计的终极目标。所谓开闭指的是对修改关闭，对扩展开放。开闭原则是当应用需求改变时，在不修改软件实体的源代码得前提下，可以扩展模块功能，使其满足新的需求。 软件遵守开闭原则的话，软件测试只要对扩展的代码进行测试就可以了。 而其他的原则则是为了">
+<meta name="keywords" content="设计">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用bash制作守护进程的脚本">
-<meta property="og:url" content="https://dcais.github.io/blog/2018/10/23/bash-process-watcher/index.html">
+<meta property="og:title" content="浅谈设计模式原则">
+<meta property="og:url" content="https://dcais.github.io/blog/2020/10/20/design-pattern-principal/index.html">
 <meta property="og:site_name" content="DCai&#39;s Blog">
-<meta property="og:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+<meta property="og:description" content="设计模式原则大概有一下几种：  开闭原则 里氏原则 依赖倒置原则 单一职责原则 接口隔离原则 迪米特原则 合成复用原则  其中，最重要的是开闭原则，它是面向对象设计的终极目标。所谓开闭指的是对修改关闭，对扩展开放。开闭原则是当应用需求改变时，在不修改软件实体的源代码得前提下，可以扩展模块功能，使其满足新的需求。 软件遵守开闭原则的话，软件测试只要对扩展的代码进行测试就可以了。 而其他的原则则是为了">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-23T05:25:52.570Z">
+<meta property="og:updated_time" content="2020-10-20T15:47:52.894Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用bash制作守护进程的脚本">
-<meta name="twitter:description" content="运用场景在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。 1. 记录进程的PID为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID 我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID Example: 12#!/bin/bashjava -jar myapp">
+<meta name="twitter:title" content="浅谈设计模式原则">
+<meta name="twitter:description" content="设计模式原则大概有一下几种：  开闭原则 里氏原则 依赖倒置原则 单一职责原则 接口隔离原则 迪米特原则 合成复用原则  其中，最重要的是开闭原则，它是面向对象设计的终极目标。所谓开闭指的是对修改关闭，对扩展开放。开闭原则是当应用需求改变时，在不修改软件实体的源代码得前提下，可以扩展模块功能，使其满足新的需求。 软件遵守开闭原则的话，软件测试只要对扩展的代码进行测试就可以了。 而其他的原则则是为了">
 
 
 
 
 
 
-  <link rel="canonical" href="https://dcais.github.io/blog/2018/10/23/bash-process-watcher/">
+  <link rel="canonical" href="https://dcais.github.io/blog/2020/10/20/design-pattern-principal/">
 
 
 
@@ -144,7 +145,7 @@
   };
 </script>
 
-  <title>利用bash制作守护进程的脚本 | DCai's Blog</title>
+  <title>浅谈设计模式原则 | DCai's Blog</title>
   
 
 
@@ -340,7 +341,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2018/10/23/bash-process-watcher/">
+    <link itemprop="mainEntityOfPage" href="https://dcais.github.io/blog/blog/2020/10/20/design-pattern-principal/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="d cai">
@@ -357,7 +358,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用bash制作守护进程的脚本
+          <h1 class="post-title" itemprop="name headline">浅谈设计模式原则
               
             
           </h1>
@@ -382,7 +383,7 @@
                 
               
 
-              <time title="创建时间：2018-10-23 11:33:40 / 修改时间：13:25:52" itemprop="dateCreated datePublished" datetime="2018-10-23T11:33:40+08:00">2018-10-23</time>
+              <time title="创建时间：2020-10-20 23:16:56 / 修改时间：23:47:52" itemprop="dateCreated datePublished" datetime="2020-10-20T23:16:56+08:00">2020-10-20</time>
             
 
             
@@ -401,8 +402,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2018/10/23/bash-process-watcher/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2018/10/23/bash-process-watcher/" itemprop="commentsCount"></span>
+                <a href="/blog/2020/10/20/design-pattern-principal/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/blog/2020/10/20/design-pattern-principal/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -430,19 +431,25 @@
       
 
       
-        <h1 id="运用场景"><a href="#运用场景" class="headerlink" title="运用场景"></a>运用场景</h1><p>在linux deploy服务时，为了保证服务crash以后能够自动重启，经常需要制作守护进程的脚本。</p>
-<h2 id="1-记录进程的PID"><a href="#1-记录进程的PID" class="headerlink" title="1. 记录进程的PID"></a>1. 记录进程的PID</h2><p>为了得到准确的进程PID，我们经常在启动脚本中输出一个xxx.pid文件，其中记录了需要守护的进程的PID</p>
-<p>我们可以利用bash变量!\$ 获取Shell最后运行的后台Process的PID</p>
-<p>Example:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; ./pid.file &amp;</span><br></pre></td></tr></table></figure>
-<p>这样我们便得到了 myapp.jar的进程PID,并写入了 ./pid.file文件中</p>
-<h2 id="2-监测进程是否在运行"><a href="#2-监测进程是否在运行" class="headerlink" title="2. 监测进程是否在运行"></a>2. 监测进程是否在运行</h2><p>利用 kill -0 检测进程是否存在<br>kill -0 \$pid中的-0表示不发送任何信号给PID对应的进程，但是仍会对变量值PID对应的进程是否存在进行检查，如果\$pid对应的进程存在，则返回0，不存在返回1。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PID=$(cat ./pid.file) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line"><span class="built_in">kill</span> -0 <span class="variable">$&#123;SAUNA_PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">IS_RUNNING=$?</span><br></pre></td></tr></table></figure>
-<h2 id="3-完整脚本"><a href="#3-完整脚本" class="headerlink" title="3. 完整脚本"></a>3. 完整脚本</h2><p>start.sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line">WATCH_PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/watch.pid</span><br><span class="line"></span><br><span class="line"><span class="comment">#进程PID输出到文件</span></span><br><span class="line">java -jar myapp.jar &amp; <span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span> 2&gt;/dev/null &amp;</span><br><span class="line">sleep 5</span><br><span class="line"></span><br><span class="line">sh watch.sh &gt; watch.log 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> $! &gt; <span class="variable">$&#123;PID_FILE&#125;</span></span><br></pre></td></tr></table></figure>
-<p>watch.sh</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID_FILE=<span class="variable">$&#123;HOME&#125;</span>/pids/app.pid</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="string">"<span class="variable">$PID_FILE</span>"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line"><span class="comment">#如果PID文件存在</span></span><br><span class="line">  PID=$(cat <span class="variable">$&#123;SAUNA_PID_FILE&#125;</span>) &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  PID=<span class="string">"0000"</span></span><br><span class="line">  IS_RUNNING=1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#检测循环</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  <span class="comment"># 5 秒检测一次</span></span><br><span class="line">  sleep 5</span><br><span class="line">  <span class="keyword">if</span> [ <span class="variable">$&#123;IS_RUNNING&#125;</span> -ne 0 ] ; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"service is dead. restarting..."</span>;</span><br><span class="line">    sh start.sh</span><br><span class="line">    <span class="built_in">exit</span> 0;</span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">  <span class="built_in">kill</span> -0 <span class="variable">$&#123;PID&#125;</span> &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">  IS_RUNNING=$?</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意</strong> stop脚本里要kill掉watch.sh ，不然会重复启动。</p>
+        <p>设计模式原则大概有一下几种：</p>
+<ol>
+<li>开闭原则</li>
+<li>里氏原则</li>
+<li>依赖倒置原则</li>
+<li>单一职责原则</li>
+<li>接口隔离原则</li>
+<li>迪米特原则</li>
+<li>合成复用原则</li>
+</ol>
+<p>其中，最重要的是开闭原则，它是面向对象设计的终极目标。<br>所谓开闭指的是对修改关闭，对扩展开放。<br>开闭原则是当应用需求改变时，在不修改软件实体的源代码得前提下，可以扩展模块功能，使其满足新的需求。</p>
+<p>软件遵守开闭原则的话，软件测试只要对扩展的代码进行测试就可以了。</p>
+<p>而其他的原则则是为了达到开闭原则的目标的具体方案。</p>
+<p><strong>里氏原则</strong> 禁止破换继承关系。</p>
+<p><strong>依赖倒置</strong> 让我们面对接口编程。</p>
+<p><strong>单一职责</strong> 描述了类职责的切分。</p>
+<p><strong>接口隔离</strong> 描述了接口设计尽量要简单。</p>
+<p><strong>迪米特原则</strong> 描述了降低耦合度，尽量只和必要的实体通信。</p>
+<p><strong>组合复用</strong> 描述了优先用组合或聚合关系复用，少用继承妇幼</p>
 
       
     </div>
@@ -485,6 +492,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/blog/tags/设计/" rel="tag"># 设计</a>
+          
+        </div>
+      
 
       
       
@@ -494,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/blog/2018/10/23/es-server-config/" rel="next" title="ElasticSearch服务器secrity配置">
-                <i class="fa fa-chevron-left"></i> ElasticSearch服务器secrity配置
+              <a href="/blog/2020/05/15/docker-ce-offline-install/" rel="next" title="docker-ce 离线安装">
+                <i class="fa fa-chevron-left"></i> docker-ce 离线安装
               </a>
             
           </div>
@@ -503,10 +516,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2018/10/24/spring-custom-scope/" rel="prev" title="Spring自定义Scope (译)">
-                Spring自定义Scope (译) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -558,17 +567,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -708,22 +708,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运用场景"><span class="nav-text">运用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-记录进程的PID"><span class="nav-text">1. 记录进程的PID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-监测进程是否在运行"><span class="nav-text">2. 监测进程是否在运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-完整脚本"><span class="nav-text">3. 完整脚本</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
