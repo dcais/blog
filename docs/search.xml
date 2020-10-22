@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>ReentrantLock &amp; Syncronized</title>
+      <link href="/blog/2020/10/22/reenterlock-aqs-syncronized/"/>
+      <url>/blog/2020/10/22/reenterlock-aqs-syncronized/</url>
+      
+        <content type="html"><![CDATA[<h2 id="先来一个ReentrantLock-与-Syncronized的比较"><a href="#先来一个ReentrantLock-与-Syncronized的比较" class="headerlink" title="先来一个ReentrantLock 与 Syncronized的比较"></a>先来一个ReentrantLock 与 Syncronized的比较</h2><table><thead><tr><th>\</th><th>ReentrantLock</th><th>Syncronized </th></tr></thead><tbody><tr><td> 锁实现机制</td><td>依赖AQS</td><td>监视器模式（monitor）</td></tr><tr><td> 灵活性</td><td>支持响应中断、超时、尝试获取锁</td><td>不灵活</td></tr><tr><td> 释放形式</td><td>必须显式调用unlock()释放锁</td><td>自动释放监视器</td></tr><tr><td> 锁类型</td><td>非公平锁&amp;公平锁</td><td>非公平锁 </td></tr><tr><td> 条件队列</td><td>可关联多个条件队列</td><td>关联一个条件队列</td></tr><tr><td> 可重入性</td><td>可重入</td><td>可重入</td></tr></tbody></table><h2 id="什么是AQS"><a href="#什么是AQS" class="headerlink" title="什么是AQS"></a>什么是AQS</h2><p> <a href="https://tech.meituan.com/2019/12/05/aqs-theory-and-apply.html" target="_blank" rel="noopener">美团的这篇文章详细介绍了AQS的机制</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ReentryLock AQS javaCore concurrent </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>浅谈设计模式原则</title>
       <link href="/blog/2020/10/20/design-pattern-principal/"/>
       <url>/blog/2020/10/20/design-pattern-principal/</url>

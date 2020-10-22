@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dcais.github.io/blog/2020/10/22/reenterlock-aqs-syncronized/</loc>
+    
+    <lastmod>2020-10-22T07:22:54.804Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://dcais.github.io/blog/2020/10/20/design-pattern-principal/</loc>
     
     <lastmod>2020-10-20T15:47:52.894Z</lastmod>
@@ -93,14 +100,14 @@
   </url>
   
   <url>
-    <loc>https://dcais.github.io/blog/2018/10/26/use-of-application-context-aware/</loc>
+    <loc>https://dcais.github.io/blog/2018/10/24/spring-custom-scope/</loc>
     
     <lastmod>2018-11-05T07:00:38.460Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://dcais.github.io/blog/2018/10/24/spring-custom-scope/</loc>
+    <loc>https://dcais.github.io/blog/2018/10/26/use-of-application-context-aware/</loc>
     
     <lastmod>2018-11-05T07:00:38.460Z</lastmod>
     
