@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dcais.github.io/blog/2020/12/28/es-clear-log/</loc>
+    
+    <lastmod>2020-12-28T10:20:46.307Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://dcais.github.io/blog/2020/11/12/jvm-gc-compare/</loc>
+    
+    <lastmod>2020-11-12T02:28:09.194Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://dcais.github.io/blog/2020/10/22/reenterlock-aqs-syncronized/</loc>
     
     <lastmod>2020-10-22T07:22:54.804Z</lastmod>

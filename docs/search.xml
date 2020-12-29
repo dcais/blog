@@ -3,6 +3,40 @@
   
     
     <entry>
+      <title>es清除过期的log索引bash脚本</title>
+      <link href="/blog/2020/12/28/es-clear-log/"/>
+      <url>/blog/2020/12/28/es-clear-log/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">ES_IP=127.0.0.1</span><br><span class="line">ES_PORT=9200</span><br><span class="line"></span><br><span class="line"><span class="comment">###################################</span></span><br><span class="line"><span class="comment">#删除早于十天的ES集群的索引</span></span><br><span class="line"><span class="comment">###################################</span></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">delete_indices</span></span>() &#123;</span><br><span class="line">    comp_date=`date -d <span class="string">"5 day ago"</span> +<span class="string">"%Y-%m-%d"</span>`</span><br><span class="line">    date1=<span class="string">"<span class="variable">$1</span> 00:00:00"</span></span><br><span class="line">    date2=<span class="string">"<span class="variable">$comp_date</span> 00:00:00"</span></span><br><span class="line"></span><br><span class="line">    t1=`date -d <span class="string">"<span class="variable">$date1</span>"</span> +%s`</span><br><span class="line">    t2=`date -d <span class="string">"<span class="variable">$date2</span>"</span> +%s`</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$t1</span> -le <span class="variable">$t2</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$1</span>时间早于<span class="variable">$comp_date</span>，进行索引删除"</span></span><br><span class="line">        <span class="comment">#转换一下格式，将类似2017-10-01格式转化为2017.10.01</span></span><br><span class="line">        format_date=`<span class="built_in">echo</span> <span class="variable">$1</span>| sed <span class="string">'s/-/\./g'</span>`</span><br><span class="line">        curl -XDELETE http://<span class="variable">$&#123;ES_IP&#125;</span>:<span class="variable">$&#123;ES_PORT&#125;</span>/*<span class="variable">$format_date</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">curl -XGET http://<span class="variable">$&#123;ES_IP&#125;</span>:<span class="variable">$&#123;ES_PORT&#125;</span>/_cat/indices | awk -F<span class="string">" "</span> <span class="string">'&#123;print $3&#125;'</span> | awk -F<span class="string">"-"</span> <span class="string">'&#123;print $NF&#125;'</span> | egrep <span class="string">"[0-9]*\.[0-9]*\.[0-9]*"</span> | sort | uniq  | sed <span class="string">'s/\./-/g'</span> | <span class="keyword">while</span> <span class="built_in">read</span> LINE</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="comment">#调用索引删除函数</span></span><br><span class="line">    delete_indices <span class="variable">$LINE</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> tips es bash </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>垃圾收集比较</title>
+      <link href="/blog/2020/11/12/jvm-gc-compare/"/>
+      <url>/blog/2020/11/12/jvm-gc-compare/</url>
+      
+        <content type="html"><![CDATA[<table><thead><tr><th></th><th>YoungGC/MinorGc</th><th>OldGC/MajorGC</th></tr></thead><tbody><tr><td>Serial</td><td>{STW} copy</td><td>{STW}mark&amp;compact</td></tr><tr><td>Parallel Scavenge</td><td>{STW} copy</td><td>{STW}mark&amp;compact</td></tr><tr><td>CMS</td><td></td><td>{STW}initMark =&gt; {Conc}Mark =&gt;{STW}FinishMark=&gt;{Conc}Sweep</td></tr><tr><td>G1</td><td></td><td>{STW}initMark=&gt;{Conc}Mark=&gt;</td></tr><tr><td>ZGC</td><td></td></tr></tbody></table>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> jvm gc </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>ReentrantLock &amp; Syncronized</title>
       <link href="/blog/2020/10/22/reenterlock-aqs-syncronized/"/>
       <url>/blog/2020/10/22/reenterlock-aqs-syncronized/</url>
