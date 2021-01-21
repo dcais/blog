@@ -3,6 +3,23 @@
   
     
     <entry>
+      <title>完美解决方案：实现在big sur中新增文件目录下任意读写。（例如新增/data目录）</title>
+      <link href="/blog/2021/01/21/bigsur-add-rwdir-under-root/"/>
+      <url>/blog/2021/01/21/bigsur-add-rwdir-under-root/</url>
+      
+        <content type="html"><![CDATA[<ol><li><p>先在home目录下创建一个可以读写的目录，例如/Users/david/data</p></li><li><p>编辑</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/synthetic.conf</span><br></pre></td></tr></table></figure></li></ol><ol start="3"><li><p>在synthetic.conf文件中添加一行（注意：/Users/david/data是你自己创建的可读写的目录，可以自定义。用来做为/data实际存储的目录。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data    /Users/david/data</span><br></pre></td></tr></table></figure></li></ol><p>   <strong>中间的分隔符一定要是tab</strong></p><p>   重启后会创建一个/data的软链接，指向/Users/david/data)</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> bigsur trick osx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>es清除过期的log索引bash脚本</title>
       <link href="/blog/2020/12/28/es-clear-log/"/>
       <url>/blog/2020/12/28/es-clear-log/</url>
